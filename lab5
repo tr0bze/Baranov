@@ -1,0 +1,52 @@
+#include <iostream>
+
+class Rectangle_Parallel {
+private:
+    double a;  // Длина стороны a
+    double b;  // Длина стороны b
+    double H;  // Высота
+
+public:
+    // Конструктор класса
+    Rectangle_Parallel(double sideA, double sideB, double height) {
+        a = sideA;
+        b = sideB;
+        H = height;
+    }
+
+    // Вычисление площади основания
+    double getBaseArea() {
+        return a * b;
+    }
+
+    // Вычисление боковой поверхности
+    double getSideArea() {
+        return 2 * a * H + 2 * b * H;
+    }
+
+    // Вычисление полной поверхности
+    double getTotalArea() {
+        return 2 * getBaseArea() + getSideArea();
+    }
+};
+
+int main() {
+    setlocale(0, "Ru");
+    double sideA, sideB, height;
+    std::cout << "Введите длину стороны a: ";
+    std::cin >> sideA;
+    std::cout << "Введите длину стороны b: ";
+    std::cin >> sideB;
+    std::cout << "Введите высоту H: ";
+    std::cin >> height;
+
+    // Создание объекта параллелепипеда
+    Rectangle_Parallel parallelepiped(sideA, sideB, height);
+
+    // Вычисление и вывод результатов
+    std::cout << "Площадь основания: " << parallelepiped.getBaseArea() << std::endl;
+    std::cout << "Боковая поверхность: " << parallelepiped.getSideArea() << std::endl;
+    std::cout << "Полная поверхность: " << parallelepiped.getTotalArea() << std::endl;
+
+    return 0;
+}
