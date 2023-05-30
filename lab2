@@ -1,0 +1,67 @@
+#include <iostream>
+#include <cmath>
+
+class Double {
+private:
+    double value;
+
+public:
+    // Конструктор по умолчанию
+    Double() {
+        value = 0.0;
+    }
+
+    // Конструктор с параметром
+    Double(double val) {
+        value = val;
+    }
+
+    // Метод ввода значения
+    void read() {
+        std::cout << "Введите значение: ";
+        std::cin >> value;
+    }
+
+    // Метод вывода значения
+    void display() {
+        std::cout << "Значение: " << value << std::endl;
+    }
+
+    // Метод сложения
+    Double add(Double other) {
+        double result = value + other.value;
+        return Double(result);
+    }
+
+    // Метод вычитания
+    Double subtract(Double other) {
+        double result = value - other.value;
+        return Double(result);
+    }
+
+    // Метод возведения в степень
+    Double power(int exponent) {
+        double result = std::pow(value, exponent);
+        return Double(result);
+    }
+};
+
+int main() {
+    setlocale(0, "Ru");
+    Double number1;
+    number1.read();
+
+    Double number2(5.0);
+
+    Double sum = number1.add(number2);
+    Double difference = number1.subtract(number2);
+    Double powerResult = number1.power(2);
+
+    number1.display();
+    number2.display();
+    sum.display();
+    difference.display();
+    powerResult.display();
+
+    return 0;
+}
