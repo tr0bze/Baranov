@@ -1,0 +1,42 @@
+#include <iostream>
+#include <cmath>
+
+class Power {
+private:
+    double first;
+    double second;
+
+public:
+    Power(double f, double s) {
+        first = f;
+        second = s;
+    }
+
+    double power() {
+        return std::pow(first, second);
+    }
+};
+
+Power make_Power(double f, double s) {
+    if (s < 0) {
+        std::cout << "Ошибка: показатель степени должен быть неотрицательным." << std::endl;
+        exit(1);
+    }
+
+    return Power(f, s);
+}
+
+int main() {
+    setlocale(0, "Ru");
+    double base, exponent;
+    std::cout << "Введите основание степени: ";
+    std::cin >> base;
+    std::cout << "Введите показатель степени: ";
+    std::cin >> exponent;
+
+    Power myPower = make_Power(base, exponent);
+    double result = myPower.power();
+    std::cout << "Результат: " << result << std::endl;
+
+    return 0;
+}
