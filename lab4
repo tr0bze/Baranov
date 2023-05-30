@@ -1,0 +1,40 @@
+#include <iostream>
+
+class Point2D {
+protected:
+    double x;
+    double y;
+
+public:
+    Point2D(double x, double y) : x(x), y(y) {}
+
+    void printCoordinates() {
+        std::cout << "Координаты точки на плоскости: (" << x << ", " << y << ")" << std::endl;
+    }
+};
+
+class Point3D : public Point2D {
+private:
+    double z;
+
+public:
+    Point3D(double x, double y, double z) : Point2D(x, y), z(z) {}
+
+    void printCoordinates() {
+        Point2D::printCoordinates();  // Вызов функции printCoordinates из базового класса
+
+        std::cout << "Дополнительная координата: " << z << std::endl;
+    }
+};
+
+int main() {
+    setlocale(0, "Ru");
+    Point2D point2D(2.5, 3.7);
+    Point3D point3D(1.2, 4.6, 7.8);
+
+    point2D.printCoordinates();  // Вывод координат точки на плоскости
+    std::cout << std::endl;
+    point3D.printCoordinates();  // Вывод координат точки в трехмерном пространстве
+
+    return 0;
+}
