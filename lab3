@@ -1,0 +1,46 @@
+#include <iostream>
+
+struct Рair {
+    float first;
+    float second;
+
+    Рair(float f = 0.0f, float s = 0.0f) : first(f), second(s) {}
+    Рair(const Рair& other) : first(other.first), second(other.second) {}
+
+    Рair& operator+=(const Рair& other) {
+        first += other.first;
+        second += other.second;
+        return *this;
+    }
+
+    friend bool operator==(const Рair& lhs, const Рair& rhs) {
+        return (lhs.first == rhs.first) && (lhs.second == rhs.second);
+    }
+
+    friend bool operator!=(const Рair& lhs, const Рair& rhs) {
+        return !(lhs == rhs);
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const Рair& pair) {
+        os << "(" << pair.first << ", " << pair.second << ")";
+        return os;
+    }
+};
+
+int main() {
+    setlocale(0, "Ru");
+    Рair pair1;  // Использование конструктора с значениями по умолчанию
+    Рair pair2(1.5f, 2.7f);  // Использование конструктора с параметрами
+
+    Рair pair3 = pair1;  // Использование конструктора копирования
+    pair3 += pair2;  // Использование перегруженного оператора +=
+
+    std::cout << "Pair1: " << pair1 << std::endl;
+    std::cout << "Pair2: " << pair2 << std::endl;
+    std::cout << "Pair3: " << pair3 << std::endl;
+
+    std::cout << "Pair1 == Pair2: " << (pair1 == pair2) << std::endl;
+    std::cout << "Pair1 != Pair2: " << (pair1 != pair2) << std::endl;
+
+    return 0;
+}
